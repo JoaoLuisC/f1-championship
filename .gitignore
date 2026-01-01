@@ -6,3 +6,4 @@ firebase-key.json
 
 # Vercel
 .vercel
+.env*.local
