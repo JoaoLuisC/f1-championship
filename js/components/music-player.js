@@ -14,7 +14,7 @@ const MusicPlayerComponent = {
                         
                         <div class="track-info">
                             <select id="musicSelect" class="music-selector" onchange="changeMusic()">
-                                <option value="">🎵 Escolha uma música...</option>
+                                <option value="">Escolha uma música...</option>
                                 <option value="lofi">Mengo</option>
                                 <option value="jazz">ERIKA</option>
                                 <option value="ambient">Ai Se Eu Te Pego</option>
