@@ -1,0 +1,71 @@
+/* ================================
+   Hero Section
+   ================================ */
+
+.hero-section {
+    background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #1e3a8a;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: #64748b;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+.btn-primary-custom {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-blue) 100%);
+    border: none;
+    color: white;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-color) 100%);
+}
+
+.btn-outline-custom {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.btn-outline-custom:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+}

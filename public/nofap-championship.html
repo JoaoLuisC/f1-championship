@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoFap September - Jaulis Eventos</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,700;1,700;1,900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Custom CSS Modules (Global) -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/music-player.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        :root {
+            --nofap-purple: #8b5cf6;
+            --nofap-dark: #6d28d9;
+            --dark-bg: #0d0d0d;
+            --dark-card: #1a1a1a;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: #f8f9fa;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--nofap-purple) 0%, var(--nofap-dark) 100%);
+            padding: 4rem 0;
+        }
+        
+        .card {
+            background-color: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-nofap {
+            background: linear-gradient(135deg, var(--nofap-purple) 0%, var(--nofap-dark) 100%);
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .btn-nofap:hover {
+            background: linear-gradient(135deg, var(--nofap-dark) 0%, var(--nofap-purple) 100%);
+            color: white;
+        }
+        
+        .ranking-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .ranking-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .rank-1 {
+            border-left: 4px solid #ffd700;
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.2) 0%, transparent 100%);
+        }
+        
+        .rank-2 {
+            border-left: 4px solid #c0c0c0;
+            background: linear-gradient(90deg, rgba(192, 192, 192, 0.15) 0%, transparent 100%);
+        }
+        
+        .rank-3 {
+            border-left: 4px solid #cd7f32;
+            background: linear-gradient(90deg, rgba(205, 127, 50, 0.15) 0%, transparent 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar and Music Player will be auto-injected by components -->
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold mb-3">
+                <i class="bi bi-shield-fill-check" style="font-size: 5rem;"></i><br>
+                NOFAP SEPTEMBER
+            </h1>
+        </div>
+    </section>
+
+    <!-- Gerenciamento -->
+    <section class="py-5">
+        <div class="container">
+            
+            <!-- Seletor de Campeonato -->
+            <div class="row mb-4">
+                <div class="col-12 col-lg-8 mx-auto">
+                    <div class="card rounded-4 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex flex-column flex-md-row gap-3 align-items-md-center">
+                                <div class="flex-grow-1">
+                                    <label class="form-label text-white fw-bold mb-2">
+                                        <i class="bi bi-trophy me-2"></i>
+                                        Selecione o Desafio:
+                                    </label>
+                                    <select id="championshipSelect" class="form-select form-select-lg" onchange="changeChampionship()">
+                                        <option value="">Carregando...</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <button onclick="showNewChampionshipModal()" class="btn btn-nofap rounded-3 px-4 mt-md-4">
+                                        <i class="bi bi-plus-circle me-2"></i>
+                                        Novo Desafio
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <ul class="nav nav-pills justify-content-center mb-4" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="ranking-tab" data-bs-toggle="pill" data-bs-target="#ranking" type="button">
+                        Ranking
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="participants-tab" data-bs-toggle="pill" data-bs-target="#participants" type="button">
+                        Participantes
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="winners-tab" data-bs-toggle="pill" data-bs-target="#winners" type="button">
+                        Vencedores
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                
+                <!-- Tab Ranking -->
+                <div class="tab-pane fade show active" id="ranking" role="tabpanel">
+                    <div class="row">
+                        <div class="col-12 col-lg-8 mx-auto">
+                            <div class="card rounded-4">
+                                <div class="card-body p-4">
+                                    <h3 class="mb-4 text-white">Ranking de Dias</h3>
+                                    <div id="rankingList"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Participantes -->
+                <div class="tab-pane fade" id="participants" role="tabpanel">
+                    <div class="row">
+                        <div class="col-12 col-lg-8 mx-auto">
+                            <div class="card rounded-4 mb-4">
+                                <div class="card-body p-4">
+                                    <h3 class="mb-4 text-white">Adicionar Participante</h3>
+                                    <form id="participantForm">
+                                        <div class="row g-3">
+                                            <div class="col-md-8">
+                                                <input type="text" id="participantName" class="form-control form-control-lg" placeholder="Nome do Participante" required>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="number" id="participantScore" class="form-control form-control-lg" placeholder="Dias" value="0" min="0" max="30" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-nofap btn-lg w-100">
+                                                    <i class="bi bi-plus-circle me-2"></i>
+                                                    Adicionar Participante
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="card rounded-4">
+                                <div class="card-body p-4">
+                                    <h3 class="mb-4 text-white">Lista de Participantes</h3>
+                                    <div id="participantsList"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Vencedores -->
+                <div class="tab-pane fade" id="winners" role="tabpanel">
+                    <div class="row">
+                        <div class="col-12 col-lg-10 mx-auto">
+                            <div class="card rounded-4">
+                                <div class="card-body p-4">
+                                    <h3 class="mb-4 text-white">Vencedores das Edições</h3>
+                                    <p class="text-white-50 mb-4">Histórico de guerreiros que completaram o desafio</p>
+                                    <div id="winnersList">
+                                        <div class="alert alert-info">
+                                            <i class="bi bi-info-circle me-2"></i>
+                                            Os vencedores que completarem os 30 dias serão registrados aqui com honras especiais.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Novo Desafio -->
+    <div class="modal fade" id="newChampionshipModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title">Criar Novo Desafio NoFap</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="championshipForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nome do Desafio:</label>
+                            <input type="text" id="championshipName" class="form-control" placeholder="Ex: Setembro 2026" required>
+                        </div>
+                        <button type="submit" class="btn btn-nofap w-100">
+                            <i class="bi bi-check-circle me-2"></i>
+                            Criar Desafio
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- App Script -->
+    <script src="nofap-app.js"></script>
+    
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript Modules (Global) -->
+    <script src="js/app-core.js"></script>
+    <script src="js/components/navbar.js"></script>
+    <script src="js/components/music-player.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/music-player.js"></script>
+</body>
+</html>

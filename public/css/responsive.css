@@ -1,0 +1,25 @@
+/* ================================
+   Responsive Media Queries
+   ================================ */
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .music-player {
+        padding: 1.5rem;
+    }
+
+    .player-controls {
+        gap: 1rem;
+    }
+
+    .volume-slider {
+        width: 80px;
+    }
+}

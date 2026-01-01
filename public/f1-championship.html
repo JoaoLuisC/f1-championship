@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campeonato F1 - Jaulis Eventos</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Racing Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,700;1,700;1,900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Custom CSS Modules (Global) -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/music-player.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Custom Modern Styles (Page Specific) -->
+    <link rel="stylesheet" href="f1-modern.css">
+    
+    <style>
+        :root {
+            --racing-red: #FF1801;
+            --racing-yellow: #FAD733;
+            --dark-bg: #0d0d0d;
+            --dark-card: #1a1a1a;
+            --dark-hover: #252525;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: #f8f9fa;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .racing-italic {
+            font-family: 'Raleway', sans-serif;
+            font-style: italic;
+            font-weight: 900;
+        }
+        
+        .card {
+            background-color: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(255, 24, 1, 0.3) !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 50px,
+                rgba(255, 24, 1, 0.03) 50px,
+                rgba(255, 24, 1, 0.03) 51px
+            );
+        }
+        
+        .btn-racing {
+            background: linear-gradient(135deg, var(--racing-red) 0%, #cc0000 100%);
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 12px 32px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-racing:hover {
+            background: linear-gradient(135deg, #ff3020 0%, var(--racing-red) 100%);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 24, 1, 0.4);
+            color: white;
+        }
+        
+        .table-dark {
+            background-color: var(--dark-card);
+        }
+        
+        .table-dark tbody tr:hover {
+            background-color: var(--dark-hover);
+        }
+        
+        .podium-1 {
+            background: linear-gradient(90deg, rgba(250, 215, 51, 0.2) 0%, transparent 100%);
+            border-left: 4px solid var(--racing-yellow);
+        }
+        
+        .podium-2 {
+            background: linear-gradient(90deg, rgba(192, 192, 192, 0.15) 0%, transparent 100%);
+            border-left: 4px solid #c0c0c0;
+        }
+        
+        .podium-3 {
+            background: linear-gradient(90deg, rgba(205, 127, 50, 0.15) 0%, transparent 100%);
+            border-left: 4px solid #cd7f32;
+        }
+        
+        .stat-badge {
+            background-color: rgba(255, 24, 1, 0.2);
+            border: 1px solid var(--racing-red);
+            color: var(--racing-red);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        
+        .navbar-brand {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--racing-red);
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .news-badge {
+            background-color: var(--racing-red);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        
+        /* Gerenciamento Styles */
+        .nav-pills .nav-link {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-pills .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, var(--racing-red) 0%, #cc0000 100%);
+        }
+        
+        .drivers-list, .races-history {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .driver-item, .race-item-modern {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .driver-item:hover, .race-item-modern:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .race-results-container {
+            max-height: 400px;
+            overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+        
+        .result-item-modern {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .result-item-modern:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .result-item-modern.gold {
+            border-left: 4px solid #FAD733;
+        }
+        
+        .result-item-modern.silver {
+            border-left: 4px solid #c0c0c0;
+        }
+        
+        .result-item-modern.bronze {
+            border-left: 4px solid #cd7f32;
+        }
+        
+        .result-item-modern.dnf-item {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+        
+        .championship-drivers-list, .championship-circuits-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .championship-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .championship-item input {
+            flex: 1;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 6px;
+            padding: 0.5rem;
+        }
+        
+        .championship-item input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .btn-remove-item {
+            background-color: rgba(220, 38, 38, 0.2);
+            border: 1px solid #dc2626;
+            color: #dc2626;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-remove-item:hover {
+            background-color: #dc2626;
+            color: white;
+        }
+        
+        .modal-content {
+            background-color: var(--dark-card) !important;
+        }
+        
+        .form-control, .form-select {
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-color: var(--racing-red);
+            color: white;
+            box-shadow: 0 0 0 0.25rem rgba(255, 24, 1, 0.25);
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .form-select option {
+            background-color: #1a1a1a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar and Music Player will be auto-injected by components -->
+    
+    <!-- Hero Section -->
+    <section class="hero-section py-5">
+        <div class="container py-5 position-relative">
+            <div class="row align-items-center min-vh-50">
+                <div class="col-lg-8 mx-auto text-center py-5">
+                    <h1 class="display-3 racing-italic mb-4">
+                        A VELOCIDADE <span class="text-danger">DEFINE</span> OS CAMPEÕES
+                    </h1>
+                    <p class="lead mb-4 text-white-50 fw-light">
+                        Acompanhe ao vivo as estatísticas, classificações e próximas corridas do campeonato mais emocionante do mundo.
+                    </p>
+                    <a href="#calendario" class="btn btn-racing btn-lg rounded-4 shadow-lg">
+                        <i class="bi bi-calendar-event me-2"></i>
+                        Ver Calendário Completo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid de Cards -->
+    <section class="py-5 bg-dark">
+        <div class="container py-4">
+            <div class="row g-4">
+                
+                <!-- Card 1: Líder do Campeonato -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 rounded-4 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-trophy-fill text-warning fs-3 me-3"></i>
+                                <h5 class="card-title mb-0 fw-bold">Líder do Campeonato</h5>
+                            </div>
+                            
+                            <div class="text-center my-4">
+                                <div class="rounded-circle bg-secondary d-inline-flex align-items-center justify-content-center" 
+                                     style="width: 120px; height: 120px;">
+                                    <i class="bi bi-person-fill fs-1 text-white"></i>
+                                </div>
+                                <h3 class="mt-3 mb-1 racing-italic text-danger">MAX VERSTAPPEN</h3>
+                                <p class="text-white-50 mb-0">Red Bull Racing</p>
+                            </div>
+                            
+                            <div class="d-flex justify-content-around mt-4">
+                                <div class="text-center">
+                                    <div class="countdown-number" style="font-size: 2rem;">575</div>
+                                    <small class="text-white-50">Pontos</small>
+                                </div>
+                                <div class="text-center">
+                                    <div class="countdown-number" style="font-size: 2rem;">19</div>
+                                    <small class="text-white-50">Vitórias</small>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <span class="stat-badge me-2">🏆 Tricampeão</span>
+                                <span class="stat-badge">⚡ Pole Positions: 15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Próximo GP -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 rounded-4 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-geo-alt-fill text-danger fs-3 me-3"></i>
+                                <h5 class="card-title mb-0 fw-bold">Próximo GP</h5>
+                            </div>
+                            
+                            <div class="text-center my-4">
+                                <h3 class="racing-italic mb-2">GP DO BRASIL</h3>
+                                <p class="text-white-50 mb-4">
+                                    <i class="bi bi-pin-map me-2"></i>
+                                    Autódromo José Carlos Pace - Interlagos
+                                </p>
+                                
+                                <div class="countdown-number mb-1">07</div>
+                                <small class="text-white-50 d-block mb-4">Dias para a corrida</small>
+                                
+                                <div class="row g-2 text-center">
+                                    <div class="col-6">
+                                        <div class="bg-dark p-3 rounded-3">
+                                            <i class="bi bi-calendar3 text-danger"></i>
+                                            <div class="mt-2 fw-bold">05 JAN</div>
+                                            <small class="text-white-50">2026</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="bg-dark p-3 rounded-3">
+                                            <i class="bi bi-clock text-danger"></i>
+                                            <div class="mt-2 fw-bold">14:00</div>
+                                            <small class="text-white-50">Horário Local</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-outline-danger w-100 rounded-3 mt-3">
+                                <i class="bi bi-bell me-2"></i>
+                                Configurar Lembrete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Últimas Notícias -->
+                <div class="col-12 col-md-12 col-lg-4">
+                    <div class="card h-100 rounded-4 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-newspaper text-warning fs-3 me-3"></i>
+                                <h5 class="card-title mb-0 fw-bold">Últimas Notícias</h5>
+                            </div>
+                            
+                            <div class="news-item mb-3 pb-3 border-bottom border-secondary">
+                                <span class="news-badge">NOVO</span>
+                                <h6 class="mt-2 mb-1">Hamilton assina com Ferrari para 2025</h6>
+                                <small class="text-white-50">
+                                    <i class="bi bi-clock me-1"></i>
+                                    Há 2 horas
+                                </small>
+                            </div>
+                            
+                            <div class="news-item mb-3 pb-3 border-bottom border-secondary">
+                                <span class="news-badge">DESTAQUE</span>
+                                <h6 class="mt-2 mb-1">Red Bull apresenta novo carro para temporada</h6>
+                                <small class="text-white-50">
+                                    <i class="bi bi-clock me-1"></i>
+                                    Há 5 horas
+                                </small>
+                            </div>
+                            
+                            <div class="news-item mb-3 pb-3 border-bottom border-secondary">
+                                <h6 class="mb-1">McLaren confirma dupla de pilotos</h6>
+                                <small class="text-white-50">
+                                    <i class="bi bi-clock me-1"></i>
+                                    Há 1 dia
+                                </small>
+                            </div>
+                            
+                            <div class="news-item mb-3">
+                                <h6 class="mb-1">FIA anuncia mudanças no regulamento técnico</h6>
+                                <small class="text-white-50">
+                                    <i class="bi bi-clock me-1"></i>
+                                    Há 2 dias
+                                </small>
+                            </div>
+                            
+                            <a href="#noticias" class="btn btn-sm btn-outline-light w-100 rounded-3 mt-2">
+                                Ver Todas as Notícias
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabela de Classificação -->
+    <section id="classificacao" class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="display-5 racing-italic mb-3">
+                    CLASSIFICAÇÃO DO CAMPEONATO
+                </h2>
+                <p class="text-white-50">Temporada 2025/2026</p>
+            </div>
+            
+            <!-- Seletor de Campeonato -->
+            <div class="row mb-4">
+                <div class="col-12 col-lg-8 mx-auto">
+                    <div class="card rounded-4 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex flex-column flex-md-row gap-3 align-items-md-center">
+                                <div class="flex-grow-1">
+                                    <label class="form-label text-white fw-bold mb-2">
+                                        <i class="bi bi-trophy me-2"></i>
+                                        Selecione o Campeonato:
+                                    </label>
+                                    <select id="championshipSelect" class="form-select form-select-lg" onchange="changeChampionship()">
+                                        <option value="">Carregando...</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <button onclick="showNewChampionshipModal()" class="btn btn-danger rounded-3 px-4 mt-md-4">
+                                        <i class="bi bi-plus-circle me-2"></i>
+                                        Novo Campeonato
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle shadow-sm rounded-4 overflow-hidden">
+                    <thead class="bg-danger">
+                        <tr>
+                            <th scope="col" class="text-center" style="width: 60px;">Pos.</th>
+                            <th scope="col">Piloto</th>
+                            <th scope="col">Equipe</th>
+                            <th scope="col" class="text-center">Pontos</th>
+                            <th scope="col" class="text-center d-none d-md-table-cell">Vitórias</th>
+                            <th scope="col" class="text-center d-none d-lg-table-cell">Pódios</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="podium-1">
+                            <td class="text-center">
+                                <i class="bi bi-trophy-fill text-warning fs-5"></i>
+                            </td>
+                            <td class="fw-bold">Max Verstappen</td>
+                            <td>Red Bull Racing</td>
+                            <td class="text-center fw-bold fs-5">575</td>
+                            <td class="text-center d-none d-md-table-cell">19</td>
+                            <td class="text-center d-none d-lg-table-cell">21</td>
+                        </tr>
+                        <tr class="podium-2">
+                            <td class="text-center">
+                                <i class="bi bi-trophy-fill" style="color: #c0c0c0;"></i>
+                            </td>
+                            <td class="fw-bold">Sergio Pérez</td>
+                            <td>Red Bull Racing</td>
+                            <td class="text-center fw-bold fs-5">285</td>
+                            <td class="text-center d-none d-md-table-cell">2</td>
+                            <td class="text-center d-none d-lg-table-cell">8</td>
+                        </tr>
+                        <tr class="podium-3">
+                            <td class="text-center">
+                                <i class="bi bi-trophy-fill" style="color: #cd7f32;"></i>
+                            </td>
+                            <td class="fw-bold">Lewis Hamilton</td>
+                            <td>Mercedes</td>
+                            <td class="text-center fw-bold fs-5">234</td>
+                            <td class="text-center d-none d-md-table-cell">1</td>
+                            <td class="text-center d-none d-lg-table-cell">7</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center text-white-50">4</td>
+                            <td>Fernando Alonso</td>
+                            <td>Aston Martin</td>
+                            <td class="text-center">206</td>
+                            <td class="text-center d-none d-md-table-cell">0</td>
+                            <td class="text-center d-none d-lg-table-cell">6</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center text-white-50">5</td>
+                            <td>Carlos Sainz</td>
+                            <td>Ferrari</td>
+                            <td class="text-center">200</td>
+                            <td class="text-center d-none d-md-table-cell">1</td>
+                            <td class="text-center d-none d-lg-table-cell">5</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center text-white-50">6</td>
+                            <td>Charles Leclerc</td>
+                            <td>Ferrari</td>
+                            <td class="text-center">188</td>
+                            <td class="text-center d-none d-md-table-cell">1</td>
+                            <td class="text-center d-none d-lg-table-cell">4</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center text-white-50">7</td>
+                            <td>Lando Norris</td>
+                            <td>McLaren</td>
+                            <td class="text-center">175</td>
+                            <td class="text-center d-none d-md-table-cell">0</td>
+                            <td class="text-center d-none d-lg-table-cell">4</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center text-white-50">8</td>
+                            <td>George Russell</td>
+                            <td>Mercedes</td>
+                            <td class="text-center">160</td>
+                            <td class="text-center d-none d-md-table-cell">0</td>
+                            <td class="text-center d-none d-lg-table-cell">3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#classificacao-completa" class="btn btn-outline-danger rounded-3 px-4">
+                    Ver Classificação Completa
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Gerenciamento -->
+    <section class="py-5 bg-dark" id="gerenciamento">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="display-5 racing-italic mb-3">
+                    GERENCIAR CAMPEONATO
+                </h2>
+                <p class="text-white-50">Adicione pilotos e registre corridas</p>
+            </div>
+            
+            <!-- Tabs de Gerenciamento -->
+            <ul class="nav nav-pills nav-fill mb-4" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active rounded-3 mx-1" id="pilotos-tab" data-bs-toggle="tab" data-bs-target="#pilotos-panel" type="button">
+                        <i class="bi bi-people-fill me-2"></i>
+                        Pilotos
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-3 mx-1" id="corridas-tab" data-bs-toggle="tab" data-bs-target="#corridas-panel" type="button">
+                        <i class="bi bi-flag-fill me-2"></i>
+                        Corridas
+                    </button>
+                </li>
+            </ul>
+            
+            <!-- Tab Content -->
+            <div class="tab-content">
+                
+                <!-- Painel de Pilotos -->
+                <div class="tab-pane fade show active" id="pilotos-panel">
+                    <div class="row">
+                        <div class="col-12 col-lg-5 mb-4">
+                            <div class="card rounded-4 shadow-sm h-100">
+                                <div class="card-body p-4">
+                                    <h4 class="mb-4">
+                                        <i class="bi bi-person-plus-fill text-danger me-2"></i>
+                                        Adicionar Piloto
+                                    </h4>
+                                    <form id="driverForm" onsubmit="addDriver(event)">
+                                        <div class="mb-3">
+                                            <label class="form-label text-white">Nome do Piloto</label>
+                                            <input type="text" id="driverName" class="form-control form-control-lg" placeholder="Ex: Lewis Hamilton" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label text-white">Equipe</label>
+                                            <input type="text" id="driverTeam" class="form-control form-control-lg" placeholder="Ex: Mercedes" required>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label text-white">Número</label>
+                                            <input type="number" id="driverNumber" class="form-control form-control-lg" placeholder="Ex: 44" min="1" max="99" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-danger w-100 rounded-3 py-3">
+                                            <i class="bi bi-plus-circle me-2"></i>
+                                            Adicionar Piloto
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-lg-7">
+                            <div class="card rounded-4 shadow-sm h-100">
+                                <div class="card-body p-4">
+                                    <h4 class="mb-4">
+                                        <i class="bi bi-list-ul text-warning me-2"></i>
+                                        Pilotos Cadastrados
+                                    </h4>
+                                    <div id="driversList" class="drivers-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Painel de Corridas -->
+                <div class="tab-pane fade" id="corridas-panel">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 mb-4">
+                            <div class="card rounded-4 shadow-sm h-100">
+                                <div class="card-body p-4">
+                                    <h4 class="mb-4">
+                                        <i class="bi bi-flag-fill text-danger me-2"></i>
+                                        Registrar Nova Corrida
+                                    </h4>
+                                    <form id="raceForm" onsubmit="addRace(event)">
+                                        <div class="mb-3">
+                                            <label class="form-label text-white">Circuito</label>
+                                            <select id="raceCircuit" class="form-select form-select-lg" required>
+                                                <option value="">Selecione um circuito...</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label text-white">Data da Corrida</label>
+                                            <input type="date" id="raceDate" class="form-control form-control-lg" required>
+                                        </div>
+                                        
+                                        <h5 class="text-white mb-3">Resultado (arraste para ordenar)</h5>
+                                        <div id="raceResults" class="race-results-container mb-4"></div>
+                                        
+                                        <button type="submit" class="btn btn-danger w-100 rounded-3 py-3">
+                                            <i class="bi bi-check-circle me-2"></i>
+                                            Registrar Corrida
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-lg-6">
+                            <div class="card rounded-4 shadow-sm h-100">
+                                <div class="card-body p-4">
+                                    <h4 class="mb-4">
+                                        <i class="bi bi-calendar-check text-warning me-2"></i>
+                                        Histórico de Corridas
+                                    </h4>
+                                    <div id="racesList" class="races-history"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Novo Campeonato -->
+    <div class="modal fade" id="newChampionshipModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark border-0 rounded-4">
+                <div class="modal-header border-bottom border-secondary">
+                    <h4 class="modal-title text-white">
+                        <i class="bi bi-trophy-fill text-warning me-2"></i>
+                        Criar Novo Campeonato
+                    </h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-4">
+                        <label class="form-label text-white fw-bold">Nome do Campeonato</label>
+                        <input type="text" id="championshipName" class="form-control form-control-lg" placeholder="Ex: Campeonato F1 2025" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <label class="form-label text-white fw-bold mb-0">
+                                <i class="bi bi-people-fill me-2"></i>
+                                Pilotos
+                            </label>
+                            <button type="button" onclick="addChampionshipDriver()" class="btn btn-sm btn-outline-light rounded-3">
+                                <i class="bi bi-plus-circle me-1"></i>
+                                Adicionar
+                            </button>
+                        </div>
+                        <div id="championshipDriversList" class="championship-drivers-list"></div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <label class="form-label text-white fw-bold mb-0">
+                                <i class="bi bi-geo-alt-fill me-2"></i>
+                                Circuitos
+                            </label>
+                            <button type="button" onclick="addChampionshipCircuit()" class="btn btn-sm btn-outline-light rounded-3">
+                                <i class="bi bi-plus-circle me-1"></i>
+                                Adicionar
+                            </button>
+                        </div>
+                        <div id="championshipCircuitsList" class="championship-circuits-list"></div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top border-secondary">
+                    <button type="button" class="btn btn-secondary rounded-3" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" onclick="createChampionship()" class="btn btn-danger rounded-3 px-4">
+                        <i class="bi bi-check-circle me-2"></i>
+                        Criar Campeonato
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detalhes da Corrida -->
+    <div class="modal fade" id="raceDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark border-0 rounded-4">
+                <div class="modal-header border-bottom border-secondary">
+                    <h4 class="modal-title text-white" id="modalRaceName"></h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-white-50 mb-4" id="modalRaceInfo"></p>
+                    <div id="modalRaceResults"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark border-top border-secondary py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="text-white-50 mb-0">
+                        &copy; 2025 Jaulis Eventos - Campeonato F1
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-3">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="#" class="text-white-50 text-decoration-none me-3">
+                        <i class="bi bi-twitter"></i>
+                    </a>
+                    <a href="#" class="text-white-50 text-decoration-none">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- App Logic -->
+    <script src="app.js"></script>
+    
+    <script>
+        // Atualizar a UI quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDynamicContent();
+            renderDriversList();
+            renderRacesList();
+        });
+        
+        async function updateDynamicContent() {
+            try {
+                // Atualizar tabela de classificação
+                const standings = document.querySelector('#classificacao table tbody');
+                if (standings && drivers && drivers.length > 0) {
+                    standings.innerHTML = drivers.slice(0, 8).map((driver, index) => {
+                        let podiumClass = '';
+                        if (index === 0) podiumClass = 'podium-1';
+                        else if (index === 1) podiumClass = 'podium-2';
+                        else if (index === 2) podiumClass = 'podium-3';
+                        
+                        return `
+                            <tr class="${podiumClass}">
+                                <td class="text-center">
+                                    ${index < 3 ? `<i class="bi bi-trophy-fill ${index === 0 ? 'text-warning' : ''}" style="${index === 1 ? 'color: #c0c0c0;' : index === 2 ? 'color: #cd7f32;' : ''}"></i>` : `<span class="text-white-50">${index + 1}</span>`}
+                                </td>
+                                <td class="${index < 3 ? 'fw-bold' : ''}">${driver.name}</td>
+                                <td>${driver.team}</td>
+                                <td class="text-center ${index < 3 ? 'fw-bold fs-5' : ''}">${driver.points || 0}</td>
+                                <td class="text-center d-none d-md-table-cell">${driver.wins || 0}</td>
+                                <td class="text-center d-none d-lg-table-cell">${driver.podiums || 0}</td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+                
+                // Atualizar card do líder
+                if (drivers && drivers.length > 0) {
+                    const leader = drivers[0];
+                    const leaderName = document.querySelector('.card-body h3.racing-italic');
+                    const leaderTeam = document.querySelector('.card-body h3.racing-italic + p');
+                    if (leaderName) leaderName.textContent = leader.name.toUpperCase();
+                    if (leaderTeam) leaderTeam.textContent = leader.team;
+                    
+                    const statsNumbers = document.querySelectorAll('.countdown-number');
+                    if (statsNumbers[0]) statsNumbers[0].textContent = leader.points || 0;
+                    if (statsNumbers[1]) statsNumbers[1].textContent = leader.wins || 0;
+                }
+            } catch (error) {
+                console.error('Erro ao atualizar conteúdo dinâmico:', error);
+            }
+        }
+        
+        // Renderizar lista de pilotos no painel de gerenciamento
+        function renderDriversList() {
+            const container = document.getElementById('driversList');
+            if (!container) return;
+            
+            if (!drivers || drivers.length === 0) {
+                container.innerHTML = '<p class="text-white-50 text-center py-4">Nenhum piloto cadastrado ainda.</p>';
+                return;
+            }
+            
+            container.innerHTML = drivers.map(driver => `
+                <div class="driver-item">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <h6 class="text-white mb-1">${driver.name} <span class="badge bg-danger">#${driver.number}</span></h6>
+                            <p class="text-white-50 mb-2">${driver.team}</p>
+                            <small class="text-white-50">
+                                ${driver.points || 0} pontos • ${driver.wins || 0} vitórias • ${driver.podiums || 0} pódios
+                            </small>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button onclick="editDriver('${driver.id}')" class="btn btn-sm btn-outline-light rounded-2">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button onclick="deleteDriver('${driver.id}')" class="btn btn-sm btn-outline-danger rounded-2">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Renderizar lista de corridas
+        function renderRacesList() {
+            const container = document.getElementById('racesList');
+            if (!container) return;
+            
+            if (!races || races.length === 0) {
+                container.innerHTML = '<p class="text-white-50 text-center py-4">Nenhuma corrida registrada ainda.</p>';
+                return;
+            }
+            
+            container.innerHTML = races.map(race => {
+                const podium = race.results.slice(0, 3).map(result => {
+                    const driverId = typeof result === 'string' ? result : result.driverId;
+                    const driver = drivers.find(d => d.id === driverId);
+                    return driver ? driver.name : 'Desconhecido';
+                });
+                
+                return `
+                    <div class="race-item-modern" style="cursor: pointer;" onclick="showRaceDetailsModal('${race.id}')">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <h6 class="text-white mb-1">
+                                    <i class="bi bi-flag-fill text-danger me-2"></i>
+                                    ${race.circuitName || race.name}
+                                </h6>
+                                <small class="text-white-50">
+                                    <i class="bi bi-geo-alt me-1"></i>${race.circuitLocation || race.location || '-'}
+                                    <i class="bi bi-calendar3 ms-2 me-1"></i>${new Date(race.date).toLocaleDateString('pt-BR')}
+                                </small>
+                            </div>
+                            <button onclick="event.stopPropagation(); deleteRace('${race.id}')" class="btn btn-sm btn-outline-danger rounded-2">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                        <div class="d-flex gap-2 mt-2">
+                            <span class="badge bg-warning text-dark">🥇 ${podium[0] || '-'}</span>
+                            <span class="badge" style="background-color: #c0c0c0; color: #000;">🥈 ${podium[1] || '-'}</span>
+                            <span class="badge" style="background-color: #cd7f32; color: #fff;">🥉 ${podium[2] || '-'}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Renderizar resultados da corrida para o formulário
+        function renderRaceResultsForm() {
+            const container = document.getElementById('raceResults');
+            if (!container) return;
+            
+            if (!drivers || drivers.length === 0) {
+                container.innerHTML = '<p class="text-white-50 text-center py-3">Cadastre pilotos primeiro!</p>';
+                return;
+            }
+            
+            container.innerHTML = drivers.map((driver, index) => `
+                <div class="result-item-modern ${index === 0 ? 'gold' : index === 1 ? 'silver' : index === 2 ? 'bronze' : ''}" 
+                     data-driver-id="${driver.id}">
+                    <div class="fw-bold text-white" style="width: 30px;">${index + 1}º</div>
+                    <div class="flex-grow-1 text-white">${driver.name}</div>
+                    <div class="d-flex align-items-center gap-2">
+                        <label class="text-white-50 mb-0" style="font-size: 0.85rem;">
+                            <input type="checkbox" class="dnf-checkbox me-1" onchange="toggleDNF(this)">
+                            DNF
+                        </label>
+                        <button class="btn btn-sm btn-outline-light rounded-2" onclick="moveResultUp(${index})" ${index === 0 ? 'disabled' : ''}>
+                            <i class="bi bi-arrow-up"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-light rounded-2" onclick="moveResultDown(${index})" ${index === drivers.length - 1 ? 'disabled' : ''}>
+                            <i class="bi bi-arrow-down"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Funções auxiliares para mover resultados
+        function moveResultUp(index) {
+            const container = document.getElementById('raceResults');
+            const items = Array.from(container.children);
+            if (index > 0) {
+                container.insertBefore(items[index], items[index - 1]);
+                updateResultPositions();
+            }
+        }
+        
+        function moveResultDown(index) {
+            const container = document.getElementById('raceResults');
+            const items = Array.from(container.children);
+            if (index < items.length - 1) {
+                container.insertBefore(items[index + 1], items[index]);
+                updateResultPositions();
+            }
+        }
+        
+        function updateResultPositions() {
+            const container = document.getElementById('raceResults');
+            const items = container.querySelectorAll('.result-item-modern');
+            
+            items.forEach((item, index) => {
+                item.querySelector('.fw-bold').textContent = `${index + 1}º`;
+                item.classList.remove('gold', 'silver', 'bronze');
+                if (index === 0) item.classList.add('gold');
+                else if (index === 1) item.classList.add('silver');
+                else if (index === 2) item.classList.add('bronze');
+                
+                const buttons = item.querySelectorAll('button');
+                buttons[0].disabled = index === 0;
+                buttons[1].disabled = index === items.length - 1;
+                buttons[0].onclick = () => moveResultUp(index);
+                buttons[1].onclick = () => moveResultDown(index);
+            });
+        }
+        
+        // Modal de novo campeonato
+        let championshipModal;
+        function showNewChampionshipModal() {
+            championshipDrivers = [];
+            championshipCircuits = [];
+            document.getElementById('championshipName').value = '';
+            document.getElementById('championshipDriversList').innerHTML = '';
+            document.getElementById('championshipCircuitsList').innerHTML = '';
+            
+            // Adicionar campos iniciais
+            addChampionshipDriver();
+            addChampionshipCircuit();
+            
+            championshipModal = new bootstrap.Modal(document.getElementById('newChampionshipModal'));
+            championshipModal.show();
+        }
+        
+        // Modal de detalhes da corrida
+        let raceDetailsModal;
+        function showRaceDetailsModal(raceId) {
+            const race = races.find(r => r.id === raceId);
+            if (!race) return;
+            
+            document.getElementById('modalRaceName').innerHTML = `<i class="bi bi-flag-fill text-danger me-2"></i>${race.circuitName || race.name}`;
+            document.getElementById('modalRaceInfo').innerHTML = `
+                <i class="bi bi-geo-alt me-2"></i>${race.circuitLocation || race.location || '-'}
+                <i class="bi bi-calendar3 ms-3 me-2"></i>${new Date(race.date).toLocaleDateString('pt-BR')}
+            `;
+            
+            const pointsSystem = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1];
+            const resultsHTML = race.results.map((result, index) => {
+                const driverId = typeof result === 'string' ? result : result.driverId;
+                const isDNF = result.dnf || false;
+                const driver = drivers.find(d => d.id === driverId);
+                const points = isDNF ? 0 : (pointsSystem[index] || 0);
+                
+                return `
+                    <div class="d-flex justify-content-between align-items-center p-3 mb-2 rounded-3 ${index < 3 && !isDNF ? 'bg-secondary bg-opacity-25' : 'bg-dark bg-opacity-50'}">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="fw-bold text-white" style="width: 40px;">
+                                ${index < 3 && !isDNF ? (index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉') : `${index + 1}º`}
+                            </div>
+                            <div>
+                                <div class="text-white fw-bold">${driver ? driver.name : 'Desconhecido'}</div>
+                                <small class="text-white-50">${driver ? driver.team : '-'}</small>
+                                ${isDNF ? '<span class="badge bg-danger ms-2">DNF</span>' : ''}
+                            </div>
+                        </div>
+                        <div class="text-warning fw-bold">${isDNF ? '-' : points + ' pts'}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('modalRaceResults').innerHTML = resultsHTML;
+            
+            raceDetailsModal = new bootstrap.Modal(document.getElementById('raceDetailsModal'));
+            raceDetailsModal.show();
+        }
+        
+        // Sobrescrever funções de carregamento
+        const originalLoadData = window.loadData;
+        window.loadData = async function() {
+            if (originalLoadData) await originalLoadData();
+            updateDynamicContent();
+            renderDriversList();
+            renderRacesList();
+            renderRaceResultsForm();
+        };
+        
+        const originalRenderDriversList = window.renderDriversList;
+        window.renderDriversList = renderDriversList;
+        
+        const originalRenderRaceResults = window.renderRaceResults;
+        window.renderRaceResults = renderRaceResultsForm;
+        
+        // Criar campeonato com modal
+        const originalCreateChampionship = window.createChampionship;
+        window.createChampionship = async function() {
+            await originalCreateChampionship();
+            if (championshipModal) {
+                championshipModal.hide();
+            }
+        };
+    </script>
+    
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript Modules (Global) -->
+    <script src="js/app-core.js"></script>
+    <script src="js/components/navbar.js"></script>
+    <script src="js/components/music-player.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/music-player.js"></script>
+</body>
+</html>

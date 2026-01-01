@@ -1,0 +1,17 @@
+/* ================================
+   CSS Variables
+   ================================ */
+
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #f59e0b;
+    --dark-blue: #1e40af;
+    --light-gray: #f8fafc;
+    
+    /* Gamer Colors */
+    --gamer-purple: #A78BFA;
+    --gamer-cyan: #4ECDC4;
+    --gamer-dark: rgba(13, 17, 23, 0.85);
+    --gamer-dark-solid: #0d1117;
+    --gamer-dark-alt: #1a1d29;
+}

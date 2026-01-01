@@ -1,0 +1,119 @@
+/* F1 Championship - Modern Styles */
+
+/* Scrollbar personalizada */
+.drivers-list::-webkit-scrollbar,
+.races-history::-webkit-scrollbar,
+.race-results-container::-webkit-scrollbar,
+.championship-drivers-list::-webkit-scrollbar,
+.championship-circuits-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.drivers-list::-webkit-scrollbar-track,
+.races-history::-webkit-scrollbar-track,
+.race-results-container::-webkit-scrollbar-track,
+.championship-drivers-list::-webkit-scrollbar-track,
+.championship-circuits-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.drivers-list::-webkit-scrollbar-thumb,
+.races-history::-webkit-scrollbar-thumb,
+.race-results-container::-webkit-scrollbar-thumb,
+.championship-drivers-list::-webkit-scrollbar-thumb,
+.championship-circuits-list::-webkit-scrollbar-thumb {
+    background: var(--racing-red);
+    border-radius: 10px;
+}
+
+.drivers-list::-webkit-scrollbar-thumb:hover,
+.races-history::-webkit-scrollbar-thumb:hover,
+.race-results-container::-webkit-scrollbar-thumb:hover,
+.championship-drivers-list::-webkit-scrollbar-thumb:hover,
+.championship-circuits-list::-webkit-scrollbar-thumb:hover {
+    background: #ff3020;
+}
+
+/* Animações */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.driver-item,
+.race-item-modern {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Badges personalizados */
+.badge {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* Botões hover aprimorados */
+.btn-outline-light:hover,
+.btn-outline-danger:hover {
+    transform: scale(1.05);
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 768px) {
+    .result-item-modern {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .result-item-modern > div:last-child {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Transições suaves */
+* {
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Focus states melhorados */
+button:focus,
+input:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 24, 1, 0.3);
+}
+
+/* Disabled state */
+button:disabled,
+input:disabled,
+select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
