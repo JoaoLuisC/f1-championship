@@ -20,7 +20,7 @@ const db = admin.firestore();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(__dirname));
 
 // ========== ROTAS DE CAMPEONATOS ==========
 app.get('/api/championships', async (req, res) => {

@@ -27,6 +27,9 @@ const NavbarComponent = {
                                 <li><a class="dropdown-item" href="nofap-championship.html">NoFap September</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="monkeys.html">🐵 Monkeys</a>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monkeys Gang - Os Macacos do Servidor</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Global CSS Modules -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/music-player.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .monkeys-hero {
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f09 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .monkeys-hero::before {
+            content: '🐵';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .monkeys-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: #FF8C00;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+        
+        .member-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            border: 2px solid #8B4513;
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-10px);
+            border-color: #FF8C00;
+            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.3);
+        }
+        
+        .member-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF8C00 0%, #FF6347 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto 20px;
+            border: 4px solid #8B4513;
+        }
+        
+        .member-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FF8C00;
+            margin-bottom: 10px;
+        }
+        
+        .member-role {
+            color: #FFD700;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .member-bio {
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        .stats-badge {
+            display: inline-block;
+            background: rgba(255, 140, 0, 0.2);
+            border: 1px solid #FF8C00;
+            color: #FF8C00;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Hero Section -->
+    <section class="monkeys-hero">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="monkeys-title mb-4">
+                    🐵 MONKEYS GANG 🐵
+                </h1>
+                <p class="lead text-white-50 mb-4" style="font-size: 1.3rem;">
+                    Os macacos mais insanos do servidor. Unidos pela zoeira, separados pela sanidade.
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <span class="stats-badge">👥 Membros Ativos</span>
+                    <span class="stats-badge">🏆 Infinitas Conquistas</span>
+                    <span class="stats-badge">🎮 Jogos Épicos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold" style="color: #FF8C00;">Conheça os Monkeys</h2>
+                <p class="text-white-50">A gangue mais lendária do servidor</p>
+            </div>
+            
+            <div class="row g-4">
+                
+                <!-- Membro 1 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="member-card">
+                        <div class="member-avatar">🐵</div>
+                        <h3 class="member-name text-center">Monkey Alpha</h3>
+                        <p class="member-role text-center">Líder da Gangue</p>
+                        <p class="member-bio text-center">
+                            O macaco supremo. Fundador da gangue e responsável por todas as ideias geniais (e péssimas).
+                        </p>
+                        <div class="text-center mt-3">
+                            <span class="stats-badge">⭐ Fundador</span>
+                            <span class="stats-badge">🎯 Estrategista</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membro 2 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="member-card">
+                        <div class="member-avatar">🙈</div>
+                        <h3 class="member-name text-center">Monkey Cego</h3>
+                        <p class="member-role text-center">O que Não Vê Nada</p>
+                        <p class="member-bio text-center">
+                            Especialista em não ver o óbvio. Se tem algo claro na tela, ele não vê.
+                        </p>
+                        <div class="text-center mt-3">
+                            <span class="stats-badge">👓 Míope</span>
+                            <span class="stats-badge">🎮 Gamer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membro 3 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="member-card">
+                        <div class="member-avatar">🙉</div>
+                        <h3 class="member-name text-center">Monkey Surdo</h3>
+                        <p class="member-role text-center">O que Ignora Tudo</p>
+                        <p class="member-bio text-center">
+                            "Oi?" é sua frase favorita. Pode repetir 10 vezes que ele não escuta.
+                        </p>
+                        <div class="text-center mt-3">
+                            <span class="stats-badge">🔇 Surdo</span>
+                            <span class="stats-badge">💬 Pergunta Sempre</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membro 4 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="member-card">
+                        <div class="member-avatar">🙊</div>
+                        <h3 class="member-name text-center">Monkey Mudo</h3>
+                        <p class="member-role text-center">O Silencioso</p>
+                        <p class="member-bio text-center">
+                            Não fala, mas quando fala, é pra soltar a frase mais absurda possível.
+                        </p>
+                        <div class="text-center mt-3">
+                            <span class="stats-badge">🤐 Quieto</span>
+                            <span class="stats-badge">💣 Frases Bombásticas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membro 5 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="member-card">
+                        <div class="member-avatar">🦍</div>
+                        <h3 class="member-name text-center">Gorilla Chad</h3>
+                        <p class="member-role text-center">O Fortão</p>
+                        <p class="member-bio text-center">
+                            O mais forte da gangue. Carrega todo mundo nas costas (literalmente e metaforicamente).
+                        </p>
+                        <div class="text-center mt-3">
+                            <span class="stats-badge">💪 Carregador</span>
+                            <span class="stats-badge">🏋️ Chad</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membro 6 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="member-card">
+                        <div class="member-avatar">🐒</div>
+                        <h3 class="member-name text-center">Macaco Louco</h3>
+                        <p class="member-role text-center">O Imprevisível</p>
+                        <p class="member-bio text-center">
+                            Nunca se sabe o que ele vai fazer. Caos personificado em forma de macaco.
+                        </p>
+                        <div class="text-center mt-3">
+                            <span class="stats-badge">🎲 Random</span>
+                            <span class="stats-badge">🤪 Maluco</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Adicione mais membros aqui -->
+            <div class="text-center mt-5">
+                <p class="text-white-50" style="font-size: 1.1rem;">
+                    <i class="bi bi-plus-circle me-2"></i>
+                    Quer adicionar mais macacos? Personalize essa página!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lendas Section -->
+    <section class="py-5" style="background: rgba(255, 140, 0, 0.05);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold" style="color: #FF8C00;">📜 Lendas dos Monkeys</h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-12 col-md-6">
+                    <div class="card bg-dark border-warning">
+                        <div class="card-body">
+                            <h4 class="card-title text-warning">🏆 A Grande Vitória de 2024</h4>
+                            <p class="card-text text-white-50">
+                                O dia em que os Monkeys dominaram o campeonato e provaram que macaco unido jamais será vencido.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-6">
+                    <div class="card bg-dark border-warning">
+                        <div class="card-body">
+                            <h4 class="card-title text-warning">😂 O Dia do Caos Total</h4>
+                            <p class="card-text text-white-50">
+                                Quando tudo que podia dar errado, deu. Mas os Monkeys transformaram o caos em diversão.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Global JS Modules -->
+    <script src="js/app-core.js"></script>
+    <script src="js/components/navbar.js"></script>
+    <script src="js/components/music-player.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/music-player.js"></script>
+</body>
+</html>
